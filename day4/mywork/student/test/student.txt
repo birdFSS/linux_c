@@ -1,3 +1,0 @@
- 10001                       xiongda   60.50
- 10002                       xionger   90.10
- 10003                      xiongsan   99.50
