@@ -1,0 +1,45 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC:=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS:=-Wall -lpthread -lrt -I \/usr\/include\/mysql\/  -I ..\/include\/ -lmysqlclient -lcrypt$/;"	m
+ELF	Makefile	/^ELF:=server$/;"	m
+GenerateStr	commend.c	/^static void GenerateStr(char *str)$/;"	f	file:
+OBJS	Makefile	/^OBJS:=$(patsubst %.c,%.o,$(SRCS))$/;"	m
+SRCS	Makefile	/^SRCS:=$(wildcard *.c)$/;"	m
+STR_LEN	commend.c	2;"	d	file:
+apartUserInformation	commend.c	/^static int apartUserInformation(char* buf, User_t* pUser)$/;"	f	file:
+connectMYSQL	func_mysql.c	/^int connectMYSQL(MYSQL** pConn){$/;"	f
+deleteMySQL	func_mysql.c	/^int deleteMySQL(MYSQL *conn, char* deleteInfo, char* resultInfo){$/;"	f
+epollAdd	main.c	/^int epollAdd(int epfd, int fd){$/;"	f
+exitFds	main.c	/^int exitFds[2];$/;"	v
+exitHandler	main.c	/^void exitHandler(int signum){$/;"	f
+factoryDestroy	factory.c	/^void factoryDestroy(pFactory_t pf){$/;"	f
+factoryInit	factory.c	/^int factoryInit(pFactory_t pf,int threadNum,int capacity){$/;"	f
+factoryStart	factory.c	/^int factoryStart(pFactory_t pf){$/;"	f
+fileTypeNumToChar	operation.c	/^static char fileTypeNumToChar(short fileType){$/;"	f	file:
+funcCD	operation.c	/^int funcCD(char* dirName, char* pInfo){$/;"	f
+funcLS	operation.c	/^int funcLS(char* dirName, char* pInfo){$/;"	f
+funcPWD	operation.c	/^int funcPWD(char* pInfo, int length){$/;"	f
+funcRM	operation.c	/^int funcRM(char* fileName, char* pInfo){$/;"	f
+insertMySQL	func_mysql.c	/^int insertMySQL(MYSQL* conn, char* insertInfo, char* resultInfo){$/;"	f
+main	main.c	/^int main(int argc, char* argv[])$/;"	f
+queDestroy	work_que.c	/^void queDestroy(pQue_t pq){$/;"	f
+queGet	work_que.c	/^int queGet(pQue_t pq, pNode_t *p){$/;"	f
+queInit	work_que.c	/^void queInit(pQue_t pq, int capacity){$/;"	f
+queInsert	work_que.c	/^void queInsert(pQue_t pq, pNode_t pNew){$/;"	f
+queryMySQL	func_mysql.c	/^int queryMySQL(MYSQL* conn, char* queryInfo, char* resultInfo){$/;"	f
+queryMySQLForUser	func_mysql.c	/^int queryMySQLForUser(MYSQL* conn, char* queryInfo, User_t* pUser){$/;"	f
+recvCycle	transmission.c	/^int recvCycle(int sfd, void* buf, long fileSize){$/;"	f
+recvFile	transmission.c	/^int recvFile(int sfd, linkMsg_t* plmsg){$/;"	f
+sendErrorMsg	commend.c	/^void sendErrorMsg(int fd, linkMsg_t* plmsg)$/;"	f
+tcpInit	tcpInit.c	/^int tcpInit(char* ip, char* port){$/;"	f
+threadExitFunc	factory.c	/^void threadExitFunc(void *p){$/;"	f
+threadFun	factory.c	/^void* threadFun(void *p){$/;"	f
+transmiss	transmission.c	/^int transmiss(int tranFd, linkMsg_t *plmsg){$/;"	f
+updateMySQL	func_mysql.c	/^int updateMySQL(MYSQL* conn, char* updateInfo, char* resultInfo){$/;"	f
+userEnroll	commend.c	/^int userEnroll(int fd, MYSQL* conn,linkMsg_t* plmsg)$/;"	f
+userLogin	commend.c	/^int userLogin(int fd, MYSQL* conn, linkMsg_t* plmsg)$/;"	f

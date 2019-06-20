@@ -1,0 +1,99 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARGS_CHECK	include/thread_all.h	32;"	d
+BIGFILESIZE	include/factory.h	10;"	d
+BUFSIZE	include/factory.h	12;"	d
+CC	Makefile	/^CC:=gcc$/;"	m
+CC	src/Makefile	/^CC:=gcc$/;"	m
+CDCOMMEND	include/factory.h	/^    CDCOMMEND,$/;"	e	enum:commend_num
+CFLAGS	Makefile	/^CFLAGS:=-Wall -lpthread -lrt -I \/usr\/include\/mysql\/ -lmysqlclient -lcrypt$/;"	m
+CFLAGS	src/Makefile	/^CFLAGS:=-Wall -lpthread -lrt -I \/usr\/include\/mysql\/  -I ..\/include\/ -lmysqlclient -lcrypt$/;"	m
+Ciphertext	include/factory.h	/^    char Ciphertext[100];$/;"	m	struct:user
+DEBUG_SERVER	include/factory.h	8;"	d
+ELF	Makefile	/^ELF:=server$/;"	m
+ELF	src/Makefile	/^ELF:=server$/;"	m
+ERROR_CHECK	include/thread_all.h	33;"	d
+FAIL_FLAG	include/factory.h	/^    FAIL_FLAG = 0,$/;"	e	enum:flag_return
+Factory_t	include/factory.h	/^}Factory_t, *pFactory_t;$/;"	t	typeref:struct:__anon1
+GETSCOMMEND	include/factory.h	/^    GETSCOMMEND,$/;"	e	enum:commend_num
+GenerateStr	src/shortCommend.c	/^static void GenerateStr(char *str)$/;"	f	file:
+LSCOMMEND	include/factory.h	/^    LSCOMMEND,$/;"	e	enum:commend_num
+Node_t	include/work_que.h	/^}Node_t, *pNode_t;$/;"	t	typeref:struct:tag_node
+OBJS	Makefile	/^OBJS:=$(patsubst %.c,%.o,$(SRCS))$/;"	m
+OBJS	src/Makefile	/^OBJS:=$(patsubst %.c,%.o,$(SRCS))$/;"	m
+PUTSCOMMEND	include/factory.h	/^    PUTSCOMMEND,$/;"	e	enum:commend_num
+PWDCOMMEND	include/factory.h	/^    PWDCOMMEND$/;"	e	enum:commend_num
+Que_t	include/work_que.h	/^}Que_t, *pQue_t;$/;"	t	typeref:struct:__anon2
+RMCOMMEND	include/factory.h	/^    RMCOMMEND,$/;"	e	enum:commend_num
+SRCS	Makefile	/^SRCS:=$(wildcard src\/*.c)$/;"	m
+SRCS	src/Makefile	/^SRCS:=$(wildcard *.c)$/;"	m
+STR_LEN	src/shortCommend.c	2;"	d	file:
+SUCCESS	include/factory.h	/^    SUCCESS$/;"	e	enum:flag_return
+THREAD_ERROR_CHECK	include/thread_all.h	34;"	d
+USERENROLL	include/factory.h	/^    USERENROLL = 0,$/;"	e	enum:commend_num
+USERLOGIN	include/factory.h	/^    USERLOGIN,$/;"	e	enum:commend_num
+User_t	include/factory.h	/^}User_t;$/;"	t	typeref:struct:user
+_GNU_SOURCE	include/thread_all.h	2;"	d
+__FACTORY_H__	include/factory.h	2;"	d
+apartUserInformation	src/shortCommend.c	/^static int apartUserInformation(char* buf, User_t* pUser){$/;"	f	file:
+buf	include/factory.h	/^    char buf[512];\/\/文件名，文件大小，接收目录$/;"	m	struct:linkMsg
+capacity	include/work_que.h	/^    int capacity;$/;"	m	struct:__anon2
+commend_num	include/factory.h	/^enum commend_num$/;"	g
+cond	include/factory.h	/^    pthread_cond_t cond;$/;"	m	struct:__anon1
+connectMYSQL	src/func_mysql.c	/^int connectMYSQL(MYSQL** pConn){$/;"	f
+deleteMySQL	src/func_mysql.c	/^int deleteMySQL(MYSQL *conn, char* deleteInfo, char* resultInfo){$/;"	f
+epollAdd	src/main.c	/^int epollAdd(int epfd, int fd){$/;"	f
+exitFds	src/main.c	/^int exitFds[2];$/;"	v
+exitHandler	src/main.c	/^void exitHandler(int signum){$/;"	f
+factoryDestroy	src/factory.c	/^void factoryDestroy(pFactory_t pf){$/;"	f
+factoryInit	src/factory.c	/^int factoryInit(pFactory_t pf,int threadNum,int capacity){$/;"	f
+factoryStart	src/factory.c	/^int factoryStart(pFactory_t pf){$/;"	f
+fileSize	include/factory.h	/^    size_t fileSize;$/;"	m	struct:linkMsg
+fileTypeNumToChar	src/operation.c	/^static char fileTypeNumToChar(short fileType){$/;"	f	file:
+flag	include/factory.h	/^    int flag;\/\/标志位 读写浏览$/;"	m	struct:linkMsg
+flag_return	include/factory.h	/^enum flag_return$/;"	g
+funcCD	src/operation.c	/^int funcCD(char* dirName, char* pInfo){$/;"	f
+funcLS	src/operation.c	/^int funcLS(char* dirName, char* pInfo){$/;"	f
+funcPWD	src/operation.c	/^int funcPWD(char* pInfo, int length){$/;"	f
+funcRM	src/operation.c	/^int funcRM(char* fileName, char* pInfo){$/;"	f
+insertMySQL	src/func_mysql.c	/^int insertMySQL(MYSQL* conn, char* insertInfo, char* resultInfo){$/;"	f
+linkMsg	include/factory.h	/^typedef struct linkMsg{$/;"	s
+linkMsg_t	include/factory.h	/^}linkMsg_t;$/;"	t	typeref:struct:linkMsg
+main	src/main.c	/^int main(int argc, char* argv[])$/;"	f
+mutex	include/work_que.h	/^    pthread_mutex_t mutex;$/;"	m	struct:__anon2
+name	include/factory.h	/^    char name[50];$/;"	m	struct:user
+newFd	include/work_que.h	/^    int newFd;$/;"	m	struct:tag_node
+pFactory_t	include/factory.h	/^}Factory_t, *pFactory_t;$/;"	t	typeref:struct:__anon1
+pNext	include/work_que.h	/^    struct tag_node *pNext;$/;"	m	struct:tag_node	typeref:struct:tag_node::tag_node
+pNode_t	include/work_que.h	/^}Node_t, *pNode_t;$/;"	t	typeref:struct:tag_node
+pQue_t	include/work_que.h	/^}Que_t, *pQue_t;$/;"	t	typeref:struct:__anon2
+passwd	include/factory.h	/^    char passwd[50];$/;"	m	struct:user
+pthid	include/factory.h	/^    pthread_t *pthid;$/;"	m	struct:__anon1
+que	include/factory.h	/^    Que_t que;$/;"	m	struct:__anon1
+queDestroy	src/work_que.c	/^void queDestroy(pQue_t pq){$/;"	f
+queGet	src/work_que.c	/^int queGet(pQue_t pq, pNode_t *p){$/;"	f
+queHead	include/work_que.h	/^    pNode_t queHead, queTail;$/;"	m	struct:__anon2
+queInit	src/work_que.c	/^void queInit(pQue_t pq, int capacity){$/;"	f
+queInsert	src/work_que.c	/^void queInsert(pQue_t pq, pNode_t pNew){$/;"	f
+queTail	include/work_que.h	/^    pNode_t queHead, queTail;$/;"	m	struct:__anon2
+queryMySQL	src/func_mysql.c	/^int queryMySQL(MYSQL* conn, char* queryInfo, char* resultInfo){$/;"	f
+recvCycle	src/transmission.c	/^int recvCycle(int sfd, void* buf, long fileSize){$/;"	f
+recvFile	src/transmission.c	/^int recvFile(int sfd, linkMsg_t* plmsg){$/;"	f
+salt	include/factory.h	/^    char salt[20];$/;"	m	struct:user
+sendErrorMsg	src/shortCommend.c	/^void sendErrorMsg(int fd, linkMsg_t* plmsg)$/;"	f
+size	include/factory.h	/^    int size;$/;"	m	struct:linkMsg
+size	include/work_que.h	/^    int size;$/;"	m	struct:__anon2
+startFlag	include/factory.h	/^    int startFlag;$/;"	m	struct:__anon1
+tag_node	include/work_que.h	/^typedef struct tag_node{$/;"	s
+tcpInit	src/tcpInit.c	/^int tcpInit(char* ip, char* port){$/;"	f
+threadExitFunc	src/factory.c	/^void threadExitFunc(void *p){$/;"	f
+threadFun	src/factory.c	/^void* threadFun(void *p){$/;"	f
+threadNum	include/factory.h	/^    int threadNum;$/;"	m	struct:__anon1
+transmiss	src/transmission.c	/^int transmiss(int tranFd, linkMsg_t *plmsg){$/;"	f
+updateMySQL	src/func_mysql.c	/^int updateMySQL(MYSQL* conn, char* updateInfo, char* resultInfo){$/;"	f
+user	include/factory.h	/^typedef struct user{$/;"	s
+userEnroll	src/shortCommend.c	/^int userEnroll(int fd, MYSQL* conn,linkMsg_t* plmsg){$/;"	f

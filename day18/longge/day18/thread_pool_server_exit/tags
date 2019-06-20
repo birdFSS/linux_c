@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARGS_CHECK	include/head.h	34;"	d
+ERROR_CHECK	include/head.h	35;"	d
+Factory_t	include/factory.h	/^}Factory_t,*pFactory_t;$/;"	t	typeref:struct:__anon2
+Node_t	include/work_que.h	/^}Node_t,*pNode_t;$/;"	t	typeref:struct:tag_node
+Que_t	include/work_que.h	/^}Que_t,*pQue_t;$/;"	t	typeref:struct:__anon1
+THREAD_ERROR_CHECK	include/head.h	36;"	d
+_GNU_SOURCE	include/head.h	3;"	d
+__FACTORY_H__	include/factory.h	2;"	d
+__HEAD_H__	include/head.h	2;"	d
+__WORK_QUE__	include/work_que.h	2;"	d
+capacity	include/work_que.h	/^    int capacity;$/;"	m	struct:__anon1
+cond	include/factory.h	/^    pthread_cond_t cond;$/;"	m	struct:__anon2
+main	src/main.c	/^int main()$/;"	f
+mutex	include/work_que.h	/^    pthread_mutex_t mutex;$/;"	m	struct:__anon1
+newFd	include/work_que.h	/^    int newFd;$/;"	m	struct:tag_node
+pFactory_t	include/factory.h	/^}Factory_t,*pFactory_t;$/;"	t	typeref:struct:__anon2
+pNext	include/work_que.h	/^    struct tag_node *pNext;$/;"	m	struct:tag_node	typeref:struct:tag_node::tag_node
+pNode_t	include/work_que.h	/^}Node_t,*pNode_t;$/;"	t	typeref:struct:tag_node
+pQue_t	include/work_que.h	/^}Que_t,*pQue_t;$/;"	t	typeref:struct:__anon1
+pthid	include/factory.h	/^    pthread_t *pthid;$/;"	m	struct:__anon2
+que	include/factory.h	/^    Que_t que;$/;"	m	struct:__anon2
+queHead	include/work_que.h	/^    pNode_t queHead,queTail;$/;"	m	struct:__anon1
+queTail	include/work_que.h	/^    pNode_t queHead,queTail;$/;"	m	struct:__anon1
+size	include/work_que.h	/^    int size;$/;"	m	struct:__anon1
+startFlag	include/factory.h	/^    int startFlag;$/;"	m	struct:__anon2
+tag_node	include/work_que.h	/^typedef struct tag_node{$/;"	s
+threadNum	include/factory.h	/^    int threadNum;$/;"	m	struct:__anon2

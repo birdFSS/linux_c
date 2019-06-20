@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARGS_CHECK	fun_all.h	33;"	d
+CDCOMMEND	client.h	/^    CDCOMMEND,$/;"	e	enum:commend_num
+ELF	Makefile	/^ELF:=client$/;"	m
+ERROR_CHECK	fun_all.h	34;"	d
+FAIL_FLAG	client.h	/^    FAIL_FLAG = 0,$/;"	e	enum:flag_return
+FALSE	client.h	5;"	d
+GETSCOMMEND	client.h	/^    GETSCOMMEND,$/;"	e	enum:commend_num
+LSCOMMEND	client.h	/^    LSCOMMEND,$/;"	e	enum:commend_num
+OBJS	Makefile	/^OBJS:=$(patsubst %.c,%.o,$(SRCS))$/;"	m
+PUTSCOMMEND	client.h	/^    PUTSCOMMEND,$/;"	e	enum:commend_num
+PWDCOMMEND	client.h	/^    PWDCOMMEND$/;"	e	enum:commend_num
+RMCOMMEND	client.h	/^    RMCOMMEND,$/;"	e	enum:commend_num
+SRCS	Makefile	/^SRCS:=$(wildcard *.c)$/;"	m
+STDIN_MAX	client.h	3;"	d
+SUCCESS	client.h	/^    SUCCESS$/;"	e	enum:flag_return
+TEST_DOWNLOAD	client.h	2;"	d
+THREAD_ERROR_CHECK	fun_all.h	35;"	d
+TRUE	client.h	4;"	d
+USERENROLL	client.h	/^    USERENROLL=0,$/;"	e	enum:commend_num
+_GNU_SOURCE	fun_all.h	2;"	d
+aioRead	aio.c	/^int aioRead(int fromFd, char* buf, size_t length){$/;"	f
+aioWr	aio.c	/^int aioWr(int toFd, char* buf, size_t length){$/;"	f
+buf	client.h	/^    char buf[512];\/\/文件名，接收目录$/;"	m	struct:linkMsg
+commend_num	client.h	/^enum commend_num$/;"	g
+dealLine	stdin_deal.c	/^static void dealLine(char* from, char* to){$/;"	f	file:
+download	tranFun.c	/^int download(int socketFd, char* filename){$/;"	f
+epollAdd	client.c	/^int epollAdd(int epfd, int fd){                                                          $/;"	f
+fileSize	client.h	/^    long fileSize;\/\/8字节,文件大小$/;"	m	struct:linkMsg
+flag	client.h	/^    int flag;\/\/标志位 读写浏览$/;"	m	struct:linkMsg
+flag_return	client.h	/^enum flag_return$/;"	g
+getCommendFromStdin	stdin_deal.c	/^int getCommendFromStdin(char* dataStr){$/;"	f
+isAlpha	stdin_deal.c	/^static int isAlpha(char c){$/;"	f	file:
+isSpace	stdin_deal.c	/^static int isSpace(char c){$/;"	f	file:
+linkMsg	client.h	/^typedef struct linkMsg{$/;"	s
+linkMsg_t	client.h	/^}linkMsg_t;$/;"	t	typeref:struct:linkMsg
+main	client.c	/^int main(int argc,char* argv[])$/;"	f
+recvCycle	recvFun.c	/^int recvCycle(int sfd, void* buf, int fileSize){$/;"	f
+size	client.h	/^    int size;\/\/总长度$/;"	m	struct:linkMsg
+tcp_client	tcp_cli.c	/^int tcp_client(char* ip, char* port){$/;"	f
+upload	tranFun.c	/^int upload(int socketFd, char* filename){$/;"	f
