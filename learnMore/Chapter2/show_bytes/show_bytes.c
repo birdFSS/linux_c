@@ -1,4 +1,5 @@
 #include <func.h>
+#include <assert.h>
 
 typedef unsigned char* byte_pointer;
 
@@ -51,8 +52,23 @@ void test_string()
     const char* s = "abcdef";
     show_bytes((byte_pointer)s, strlen(s));
 }
+
+void test_bit()
+{
+    int x = 0x87654321;
+    int a = x & 0xff;
+    assert(a == 0x00000021);
+    int b = x ^ ~0xff;
+    assert(b == 0x789ABC21);
+    int c = x | 0xff;
+    show_bytes((byte_pointer)&c, sizeof(int));
+    assert(c == 0x876543ff);
+}
+
+
 int main(int argc, char* argv[])
 {
+    test_bit();
     //test_show_bytes(12345);
     return 0;
 }
