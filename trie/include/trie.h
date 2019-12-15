@@ -1,8 +1,7 @@
 /* welcome to world
- * file : .h
- * brief : 
+ * file : trie.h
+ * brief : trie树
  * author : BirdFSS
- * date : 
  * 
  * change log : 2019/12/15 create this file
  * 
@@ -28,12 +27,20 @@
 extern "C"{
 #endif
 
-/*************************** LOCAL STRUCT ****************************************/
+/*************************** STRUCT ****************************************/
+
+struct Trie;
+typedef struct Trie Trie;
 
 /*************************** TYPEDEF *********************************************/
 
 /*************************** GLOBAL FUNCTION *************************************/
 
+Trie* trieCreate();
+void trieInsert(Trie* obj, char * word);
+bool trieSearch(Trie* obj, char * word);
+bool trieStartsWith(Trie* obj, char * prefix);
+void trieFree(Trie* obj);
 
 
 

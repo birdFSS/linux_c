@@ -2,7 +2,6 @@
  * file : .c
  * brief : 
  * author : BirdFSS
- * date : 
  * 
  * change log : 2019/12/15 create this file
  * 
@@ -20,4 +19,10 @@
 /*************************** LOCAL FUNCTION **************************************/
 
 /*************************** GLOBAL FUNCTION *************************************/
+
+int main(int argc, char** argv)
+{
+
+    return 0;
+}
 
