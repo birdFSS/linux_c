@@ -56,6 +56,8 @@ void test_string()
 void test_bit()
 {
     int x = 0x87654321;
+    printf("x=%x\n", x);
+    show_int(x);
     int a = x & 0xff;
     assert(a == 0x00000021);
     int b = x ^ ~0xff;
