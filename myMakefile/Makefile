@@ -1,7 +1,7 @@
 #下一步需要学习如何与头文件产生依赖
 
 #源文件路径
-SRC_PATH=./src
+SRC_PATH=./
 
 #目标文件路径
 OBJ_PATH=./obj
