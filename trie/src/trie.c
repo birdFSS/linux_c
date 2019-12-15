@@ -1,15 +1,33 @@
-/*
+/* welcome to world
+ * file : .c
+ * brief : 
+ * author : BirdFSS
+ * date : 
+ * 
+ * change log : 2019/12/15 create this file
  * 
  * 
  */ 
 
-#include <func.h>
+/*************************** INCLUDE *********************************************/
+#include "../include/trie.h"
+
+/*************************** DEFINE **********************************************/
+
+/*************************** LOCAL STRUCT ****************************************/
+
+/*************************** TYPEDEF *********************************************/
+
+/*************************** LOCAL FUNCTION **************************************/
+
+/*************************** GLOBAL FUNCTION *************************************/
 
 #define MAX_TRIE_SIZE 128
 
 typedef struct Trie{
     struct Trie* chTrie[MAX_TRIE_SIZE];
     bool m_flag;
+
 } Trie;
 
 /** Initialize your data structure here. */
@@ -98,6 +116,7 @@ void trieFree(Trie* obj) {
     if(NULL == obj)
     {
         return;
+
     }
     Trie * cur = obj;
     for(int i = 0; i < MAX_TRIE_SIZE; ++i)
@@ -105,11 +124,10 @@ void trieFree(Trie* obj) {
         if(cur->chTrie[i] != NULL)
         {
             trieFree(cur->chTrie[i]);
+
         }
 
     }
     free(cur);
 
 }
-
-
