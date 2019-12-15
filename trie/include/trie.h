@@ -27,19 +27,23 @@
 extern "C"{
 #endif
 
+#define true 0
+#define false -1
+
 /*************************** STRUCT ****************************************/
 
 struct Trie;
 typedef struct Trie Trie;
 
 /*************************** TYPEDEF *********************************************/
+typedef int BOOL;
 
 /*************************** GLOBAL FUNCTION *************************************/
 
 Trie* trieCreate();
-void trieInsert(Trie* obj, char * word);
-bool trieSearch(Trie* obj, char * word);
-bool trieStartsWith(Trie* obj, char * prefix);
+void trieInsert(Trie* obj, const char * word);
+BOOL trieSearch(Trie* obj, const char * word);
+BOOL trieStartsWith(Trie* obj, const char * prefix);
 void trieFree(Trie* obj);
 
 

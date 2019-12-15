@@ -4,7 +4,7 @@
 SRC_PATH=./
 
 #目标文件路径
-OBJ_PATH=./obj
+OBJ_PATH=../obj
 
 #搜索源文件路径下所有.c文件
 SRCS=$(wildcard $(SRC_PATH)/*.c)

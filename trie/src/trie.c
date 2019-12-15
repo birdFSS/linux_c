@@ -17,7 +17,7 @@
 /*************************** LOCAL STRUCT ****************************************/
 struct Trie{
     struct Trie* chTrie[MAX_TRIE_SIZE];
-    bool m_flag;
+    BOOL m_flag;
 };
 /*************************** TYPEDEF *********************************************/
 
@@ -33,7 +33,7 @@ Trie* trieCreate() {
 }
 
 /** Inserts a word into the trie. */
-void trieInsert(Trie* obj, char * word) {
+void trieInsert(Trie* obj, const char * word) {
     if(NULL == obj || NULL == word)
     {
         return;
@@ -54,7 +54,7 @@ void trieInsert(Trie* obj, char * word) {
 }
 
 /** Returns if the word is in the trie. */
-bool trieSearch(Trie* obj, char * word) {
+BOOL trieSearch(Trie* obj, const char * word) {
     if(NULL == obj || NULL == word)
     {
         return false;
@@ -73,7 +73,7 @@ bool trieSearch(Trie* obj, char * word) {
 }
 
 /** Returns if there is any word in the trie that starts with the given prefix. */
-bool trieStartsWith(Trie* obj, char * prefix) {
+BOOL trieStartsWith(Trie* obj, const char * prefix) {
     if(NULL == obj || NULL == prefix)
     {
         return false;
