@@ -97,7 +97,10 @@ alias svim='sudo vim'
 alias install='sudo apt get install'
 alias gowork='cd /home/ffh/cplus/; /home/ffh/cplus/everyday_mkdir.sh'
 alias mkcd='foo() { mkdir "$1"; cd "$1"; }; foo '
-alias mkpro='pro() { mkcd "$1"; mkdir src include obj tmp; cd src; cp ~/cLinux/myMakefile/Makefile ./; vim "$1".c; }; pro '
+alias newc='newC() { cp ~/cLinux/pattern/pat.c "$1".c; vim "$1".c; }; newC'
+alias newh='newH() { cp ~/cLinux/pattern/pat.h "$1".h;}; newH'
+alias mkpro='pro() { mkcd "$1"; mkdir src include obj tmp; cd include; newh "$1"; cd ..; \
+             cd src; cp ~/cLinux/myMakefile/Makefile ./; newc "$1";}; pro '
 alias ..='cd ..'
 alias ...="cd ..; cd .."
 alias ....="cd ..;cd ..;cd ..;"
