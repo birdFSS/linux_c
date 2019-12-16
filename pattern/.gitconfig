@@ -1,0 +1,11 @@
+[user]
+	name = birdFSS
+	email = ffh465031824@163.com
+[credential]
+	helper = store
+[alias]
+    ci = commit -s
+    co = checkout
+    br = branch
+    st = status
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
