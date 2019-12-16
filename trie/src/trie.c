@@ -4,7 +4,7 @@
  * author : BirdFSS
  * 
  * change log : 2019/12/15 create this file
- * 
+ *              2019/12/15 first version
  * 
  */ 
 
@@ -104,7 +104,6 @@ void trieFree(Trie* obj) {
         if(cur->chTrie[i] != NULL)
         {
             trieFree(cur->chTrie[i]);
-
         }
     }
     free(cur);

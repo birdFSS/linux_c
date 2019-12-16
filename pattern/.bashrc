@@ -100,7 +100,7 @@ alias mkcd='foo() { mkdir "$1"; cd "$1"; }; foo '
 alias newc='newC() { cp ~/cLinux/pattern/pat.c "$1"; vim "$1"; }; newC'
 alias newh='newH() { cp ~/cLinux/pattern/pat.h "$1";}; newH'
 alias mkpro='pro() { mkcd "$1"; mkdir src include obj tmp; cd include; newh "$1".h; cd ..; \
-             cd src; cp ~/cLinux/myMakefile/Makefile ./; newc "$1".c;}; pro '
+             cd src; cp ~/cLinux/pattern/Makefile ./; newc "$1".c;}; pro '
 alias ..='cd ..'
 alias ...="cd ..; cd .."
 alias ....="cd ..;cd ..;cd ..;"
