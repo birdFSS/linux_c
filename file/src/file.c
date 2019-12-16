@@ -56,15 +56,19 @@ void test_getFilePart()
     int fd = open("file.c", O_RDWR, 0766);
     char* buf = (char*)calloc(1, 65536);
     getFilePart(fd, buf,8,213);
-    printf("---------------buf-------------------\n%s\n", buf);
+    printf("---------------buf1-------------------\n%s\n", buf);
 
     memset(buf, 0, 65536);
     getFilePart(fd, buf,11111911, 122);
-    printf("\n--------------buf-------------------\n%s\n", buf);
+    printf("\n--------------buf2-------------------\n%s\n", buf);
 
     memset(buf, 0, 65536);
     getFilePart(fd, buf,0, 65536);
-    printf("\n--------------buf-------------------\n%s\n", buf);
+    printf("\n--------------buf3-------------------\n%s\n", buf);
+
+    memset(buf, 0, 65536);
+    getFilePart(fd, buf,100, -213);
+    printf("\n--------------buf4-------------------\n%s\n", buf);
     free(buf);
     close(fd);
 }

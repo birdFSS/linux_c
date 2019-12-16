@@ -1,7 +1,12 @@
-
+*.gcno
 *.o
 *.exe
 *.i
 *.txt
-*.tar.gz
+*.gz
 *.rar
+*.gz
+
+/tmp
+/clamav
+

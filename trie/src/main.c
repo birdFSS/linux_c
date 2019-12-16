@@ -31,6 +31,8 @@ int main()  //int argc, char** argv)
     printf("%d\n", trieSearch(root, "hel"));
     trieFree(root);
 
+    showMemery();
+
     return 0;
 }
 

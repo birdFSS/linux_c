@@ -33,6 +33,14 @@ extern "C"{
 /*************************** TYPEDEF *********************************************/
 
 /*************************** GLOBAL FUNCTION *************************************/
+/* fn getFilePart
+ * brief 将从文件偏移offset处开始的len个字节，读入缓冲区buf中
+ * param[in] fd 文件描述符
+ * param[out] buf 缓冲区
+ * param[in] offset 偏移量
+ * param[in] len 读取字节长度
+ */
+void getFilePart(int fd, char* buf, ssize_t offset, ssize_t len);
 
 
 

@@ -40,6 +40,7 @@ typedef int BOOL;
 
 /*************************** GLOBAL FUNCTION *************************************/
 
+void showMemery();
 Trie* trieCreate();
 void trieInsert(Trie* obj, const char * word);
 BOOL trieSearch(Trie* obj, const char * word);

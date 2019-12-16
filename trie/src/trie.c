@@ -12,7 +12,8 @@
 #include "../include/trie.h"
 
 /*************************** DEFINE **********************************************/
-#define MAX_TRIE_SIZE 128
+#define MAX_TRIE_SIZE 256
+#define CH_OFFSET 128
 
 /*************************** LOCAL STRUCT ****************************************/
 struct Trie{
@@ -20,6 +21,10 @@ struct Trie{
     BOOL m_flag;
 };
 /*************************** TYPEDEF *********************************************/
+
+/*************************** LOCAL VAL  ******************************************/
+static size_t memCnt = 0;
+/*************************** GLOBAL VAL ******************************************/
 
 /*************************** LOCAL FUNCTION **************************************/
 
@@ -29,6 +34,8 @@ struct Trie{
 Trie* trieCreate() {
     Trie *root = (Trie*)calloc(1, sizeof(Trie));
     root->m_flag = false;
+
+    memCnt += sizeof(Trie);
     return root;
 }
 
@@ -40,13 +47,15 @@ void trieInsert(Trie* obj, const char * word) {
     }
 
     Trie* cur = obj;
+    int tmp;
     while('\0' != *word)
     {
-        if(NULL == cur->chTrie[(int)*word])
+        tmp = (int)*word + CH_OFFSET;
+        if(NULL == cur->chTrie[tmp])
         {    
-            cur->chTrie[(int)*word] = trieCreate();
+            cur->chTrie[tmp] = trieCreate();
         }
-        cur = cur->chTrie[(int)*word];
+        cur = cur->chTrie[tmp];
         ++word;
     }
     cur->m_flag = true;
@@ -60,13 +69,15 @@ BOOL trieSearch(Trie* obj, const char * word) {
         return false;
     }
     Trie *cur = obj;
+    int tmp;
     while('\0' != *word)
     {
-        if(NULL == cur->chTrie[(int)*word])
+        tmp = (int)*word + CH_OFFSET;
+        if(NULL == cur->chTrie[tmp])
         {
             return false;
         }
-        cur = cur->chTrie[(int)*word];
+        cur = cur->chTrie[tmp];
         ++word;
     }
     return cur->m_flag;
@@ -80,13 +91,15 @@ BOOL trieStartsWith(Trie* obj, const char * prefix) {
     }
 
     Trie *cur = obj;
+    int tmp;
     while('\0' != *prefix)
     {
-        if(NULL == cur->chTrie[(int)*prefix])
+        tmp = (int)*prefix + CH_OFFSET;
+        if(NULL == cur->chTrie[tmp])
         {
             return false;
         }
-        cur = cur->chTrie[(int)*prefix];
+        cur = cur->chTrie[tmp];
         ++prefix;
     }
 
@@ -108,3 +121,10 @@ void trieFree(Trie* obj) {
     }
     free(cur);
 }
+
+void showMemery()
+{
+    printf("memery size = %ldMB %ldKB %ldB\n", memCnt /(1024 * 1024), memCnt / 1024 % 1024, memCnt % 1024);
+    printf("node cnt = %ld\n", memCnt/sizeof(Trie));
+}
+
