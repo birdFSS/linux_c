@@ -7,7 +7,7 @@ welcome to BirdFSS tool home
 以及一些算法相关的基础，方便使用的时候直接用
 
 命令：
-cd ~/
-mkdir cLinux
-cd cLinux
-git clone 
+cd ~/  
+mkdir cLinux  
+cd cLinux  
+git clone git@github.com:birdFSS/linux_c.git  
