@@ -7,7 +7,7 @@
 *.rar
 *.gz
 
-/tmp
-/clamav
-/*/tmp
+tmp/
+clamav/
+
 
