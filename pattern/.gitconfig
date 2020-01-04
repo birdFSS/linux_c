@@ -1,11 +1,14 @@
 [user]
-	name = birdFSS
-	email = ffh465031824@163.com
-[credential]
-	helper = store
+
+[core]
+	editor = vim
 [alias]
-    ci = commit -s
-    co = checkout
-    br = branch
-    st = status
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	co = checkout
+	ci = commit
+	br = branch
+	unstage = reset HEAD
+	st = status
+	last = log -1 HEAD
+	psom = push origin master
+	plom = pull origin master

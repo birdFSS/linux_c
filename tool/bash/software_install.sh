@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 安装下列软件 gcc g++ git lcov vim ssh
+echo 安装下列软件 gcc g++ git lcov vim ssh make net-tools
 
 sudo apt update
 sudo apt install gcc 
