@@ -95,12 +95,11 @@ alias la='ls -A'
 alias l='ls -CF'
 alias svim='sudo vim'
 alias install='sudo apt get install'
-alias gowork='cd /home/ffh/cplus/; /home/ffh/cplus/everyday_mkdir.sh'
 alias mkcd='foo() { mkdir "$1"; cd "$1"; }; foo '
-alias newc='newC() { cp ~/cLinux/pattern/pat.c "$1"; vim "$1"; }; newC'
-alias newh='newH() { cp ~/cLinux/pattern/pat.h "$1";}; newH'
+alias newc='newC() { cp ~/linux_c/pattern/pat.c "$1"; vim "$1"; }; newC'
+alias newh='newH() { cp ~/linux_c/pattern/pat.h "$1";}; newH'
 alias mkpro='pro() { mkcd "$1"; mkdir src include obj tmp; cd include; newh "$1".h; cd ..; \
-             cd src; cp ~/cLinux/pattern/Makefile ./; newc "$1".c;}; pro '
+             cd src; cp ~/linux_c/pattern/Makefile ./; newc "$1".c;}; pro '
 alias ..='cd ..'
 alias ...="cd ..; cd .."
 alias ....="cd ..;cd ..;cd ..;"
