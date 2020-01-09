@@ -20,7 +20,7 @@ CC=gcc
 CFLAG=-Wall -g 
 
 #主目标
-TARGET=main.exe
+TARGET=Test
 
 #设定依赖关系
 $(TARGET):$(OBJS)
