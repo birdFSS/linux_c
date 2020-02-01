@@ -39,6 +39,7 @@ TARGET=test
 $(TARGET):$(OBJS)
 	$(CC) -o $@ $^ $(CFLAG)
 
+
 # % 表示对应字符串匹配，分别匹配不同目录下的.c和.o文件
 # 设定.o文件的依赖关系
 $(OBJS):$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
@@ -46,6 +47,7 @@ ifneq ($(OBJ_PATH), $(wildcard $(OBJ_PATH)))
 	@mkdir $(OBJ_PATH) #当obj目录不存在时，创建该目录
 endif
 	$(CC) -c $(CFLAG) $< -o $@ $(DLIB)
+
 
 #创建头文件依赖
 $(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
@@ -55,7 +57,9 @@ $(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
 	rm -f $@.$$$$
 
 #将生成的头文件的依赖关系，包含进来
-include $(OBJS:.o=.d)
+#如下
+#obj/test.o obj/test.d : src/test.c src/../include/test.h
+-include $(OBJS:.o=.d)
 
 #.PHONY是避免与Makefile同一目录下存在同名(如clean文件)导致失败
 .PHONY:clean show
