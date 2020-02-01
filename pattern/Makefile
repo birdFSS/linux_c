@@ -1,4 +1,15 @@
-#下一步需要学习如何与头文件产生依赖
+#author : birdFSS
+#date : 2020/2/1
+#结构如下所示
+#[project]
+#|-src
+#  |-main.c
+#|-include
+#  |-main.h
+#|-obj
+#  |-main.o
+#  |-main.d 	//用来依赖头文件的，就是头文件修改后，只需编译使用该头文件的源文件即可
+#|-Makefile
 
 #源文件路径
 SRC_PATH=src
@@ -28,12 +39,6 @@ TARGET=test
 $(TARGET):$(OBJS)
 	$(CC) -o $@ $^ $(CFLAG)
 
-%.d:%.c
-	@set -e; rm -f $@; \
-	$(CC) -MM $(CPPFLAGS) $< > $@.; \
-	sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' < $@. > $@; \
-	rm -f $@.
-
 # % 表示对应字符串匹配，分别匹配不同目录下的.c和.o文件
 # 设定.o文件的依赖关系
 $(OBJS):$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
@@ -42,6 +47,15 @@ ifneq ($(OBJ_PATH), $(wildcard $(OBJ_PATH)))
 endif
 	$(CC) -c $(CFLAG) $< -o $@ $(DLIB)
 
+#创建头文件依赖
+$(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
+	@set -e; rm -f $@; \
+	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,$(OBJ_PATH)/\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+#将生成的头文件的依赖关系，包含进来
+include $(OBJS:.o=.d)
 
 #.PHONY是避免与Makefile同一目录下存在同名(如clean文件)导致失败
 .PHONY:clean show
@@ -55,5 +69,5 @@ show:
 	@echo CFLAG=$(CFLAG)
 
 clean:
-	rm -rf $(OBJS) $(TARGET)
+	rm -rf $(OBJ_PATH)/* $(TARGET)
 

@@ -8,8 +8,9 @@
  * 
  */ 
 
-#ifndef __<<_H__
-#define __<<_H__
+#ifndef __TEST_H__
+#define __TEST_H__
+
 
 /*************************** INCLUDE *********************************************/
 #include <stdio.h>

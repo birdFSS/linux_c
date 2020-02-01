@@ -28,11 +28,6 @@ TARGET=test
 $(TARGET):$(OBJS)
 	$(CC) -o $@ $^ $(CFLAG)
 
-%.d:%.c
-	@set -e; rm -f $@; \
-	$(CC) -MM $(CPPFLAGS) $< > $@.; \
-	sed 's/\($*\)\.o[ :]*/\1.o $@ : /g' < $@. > $@; \
-	rm -f $@.
 
 # % 表示对应字符串匹配，分别匹配不同目录下的.c和.o文件
 # 设定.o文件的依赖关系
@@ -42,6 +37,13 @@ ifneq ($(OBJ_PATH), $(wildcard $(OBJ_PATH)))
 endif
 	$(CC) -c $(CFLAG) $< -o $@ $(DLIB)
 
+$(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
+	@set -e; rm -f $@; \
+	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,$(OBJ_PATH)/\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+include $(OBJS:.o=.d)
 
 #.PHONY是避免与Makefile同一目录下存在同名(如clean文件)导致失败
 .PHONY:clean show
@@ -55,5 +57,5 @@ show:
 	@echo CFLAG=$(CFLAG)
 
 clean:
-	rm -rf $(OBJS) $(TARGET)
+	rm -rf $(OBJ_PATH)/* $(TARGET)
 
