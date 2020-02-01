@@ -53,7 +53,7 @@ void getFilePart(int fd, char* buf, ssize_t offset, ssize_t len)
 #if TEST_FILE
 void test_getFilePart()
 {
-    int fd = open("file.c", O_RDWR, 0766);
+    int fd = open("./src/file.c", O_RDWR, 0766);
     char* buf = (char*)calloc(1, 65536);
     getFilePart(fd, buf,8,213);
     printf("---------------buf1-------------------\n%s\n", buf);
