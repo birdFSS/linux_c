@@ -1,6 +1,7 @@
 *.gcno
 *.o
 *.d
+*.out
 *.exe
 *.i
 *.txt
