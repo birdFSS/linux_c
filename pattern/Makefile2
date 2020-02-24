@@ -1,0 +1,64 @@
+version = test
+CC = gcc
+
+DIR_INC =include
+DIR_SRC =src
+DIR_OBJ =obj
+
+SRC_PATH = $(wildcard $(DIR_SRC)/*.c)
+OBJ_PATH = $(wildcard $(DIR_OBJ)/*)
+SRC = $(notdir $(SRC_PATH))
+OBJ_TMP = $(patsubst %.c,%.o,$(SRC))
+OBJ = $(addprefix $(DIR_OBJ)/, $(OBJ_TMP))
+
+
+COVERAGE_FILE=$(DIR_OBJ)/coverage.info
+REPORT_FOLDER=CoverageReport
+
+ifeq ($(version),release)
+LIB=
+CFLAGS =  -Wall  -I$(DIR_INC)
+TARGET = Main
+$(TARGET):$(OBJ)
+	$(CC) $^ -o $@ $(CFLAGS)    
+$(OBJ):$(DIR_OBJ)/%.o:$(DIR_SRC)/%.c 
+	$(CC) $(CFLAGS) -c $^ -o $@ 
+
+else
+LIB=-lrt -lcunit 
+CFLAGS = -fprofile-arcs -ftest-coverage -g -Wall -I$(DIR_INC) -I/usr/local/include/
+GCDA = *.gcda *.gcno 
+TARGET = Test
+$(TARGET):$(OBJ)
+	$(CC) $^ -o $@ $(CFLAGS) 
+$(OBJ):$(DIR_OBJ)/%.o:$(DIR_SRC)/%.c 
+	$(CC) $(CFLAGS) -c $< -o $@ $(LIB) 
+
+endif
+
+#创建头文件依赖
+$(DIR_OBJ)/%.d:$(DIR_SRC)/%.c
+	@set -e; rm -f $@; \
+	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,$(DIR_OBJ)/\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+include $(OBJ:.o=.d)
+
+.PHONY:clean lcov show
+clean:
+	$(RM) -rf Test Main $(OBJ_PATH) *.o *.gcda *.gcno $(REPORT_FOLDER)
+lcov:
+	#需要先跑程序才允许test
+	mv $(DIR_OBJ)/*.gcda $(DIR_OBJ)/*.gcno $(DIR_SRC) 
+	lcov --rc lcov_branch_coverage=1 -c -d $(DIR_SRC) -o $(COVERAGE_FILE)
+	genhtml --rc genhtml_branch_coverage=1 $(COVERAGE_FILE) -o $(REPORT_FOLDER)
+show:
+	@echo DIR_INC=$(DIR_INC)
+	@echo DIR_SRC=$(DIR_SRC)
+	@echo DIR_OBJ=$(DIR_OBJ)
+	@echo SRC_PATH=$(SRC_PATH)
+	@echo OBJ_PATH=$(OBJ_PATH)
+	@echo SRC=$(SRC)
+	@echo OBJ=$(OBJ)
+
