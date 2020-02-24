@@ -13,10 +13,9 @@
 
 #源文件路径
 SRC_PATH=src
+
 #目标文件路径
 OBJ_PATH=obj
-#头文件路径
-INC_PATH=include
 
 #搜索源文件路径下所有.c文件
 SRCS=$(wildcard $(SRC_PATH)/*.c)
@@ -27,36 +26,19 @@ OBJS_TMP=$(patsubst %.c, %.o, $(SRCS))
 #先去掉目录项(这时是.c文件的目录)，添加.o文件的目录项
 OBJS=$(addprefix $(OBJ_PATH)/, $(notdir $(OBJS_TMP)))
 
-
 #gcc标志
 CC=gcc
-version=release
-
-ifeq ($(version), release)
-
-CFLAG=-Wall -I$(INC_PATH) -O2
-DLIB=
-
-#主目标
-TARGET=main
-
-else
-
-#CUnit gcov lcov测试程序使用下面参数
-#CFLAG=-Wall -g -I$(INC_PATH) -fprofile-arcs -ftest-coverage	
-#DLIB=-lrt -lcunit
-CFLAG=-Wall -g -I$(INC_PATH) -O1
+CFLAG=-Wall -g 
 DLIB=
 
 #主目标
 TARGET=test
 
-endif
-
 #设定依赖关系
 #执行顺序是由下至上
 $(TARGET):$(OBJS)
-	$(CC) -o $@ $^ 
+	$(CC) -o $@ $^ $(CFLAG)
+
 
 # % 表示对应字符串匹配，分别匹配不同目录下的.c和.o文件
 # 设定.o文件的依赖关系
@@ -65,6 +47,7 @@ ifneq ($(OBJ_PATH), $(wildcard $(OBJ_PATH)))
 	@mkdir $(OBJ_PATH) #当obj目录不存在时，创建该目录
 endif
 	$(CC) -c $(CFLAG) $< -o $@ $(DLIB)
+
 
 #创建头文件依赖
 $(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
