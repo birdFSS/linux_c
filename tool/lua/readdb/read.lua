@@ -25,8 +25,8 @@ function analyse_av_sig(line, mode)
     local arr = Split(line, ":")
     --测试使用，后面可以写脚本把其归一化，id都在第一个，virusName都在第二个
     if MD_HDB == mode then
-        id = arr[1]
-        virusName = arr[2]
+        id = arr[2]
+        virusName = arr[3]
     elseif MD_MDB == mode then
         id = arr[1]
         virusName = arr[2]
@@ -49,7 +49,7 @@ function readdb(fileName)
 
     for line in io.lines(fileName) do
         local id,virusName = analyse_av_sig(line, mode)
-        print("id=" .. id .. "\nvirusname=" .. virusName)
+        --print("id=" .. id .. "\nvirusname=" .. virusName)
         --sql.insert(conn, "id, name", id, name)
     end
     --sql.free_sqlite(DB_NAME)
@@ -71,12 +71,12 @@ function normalize(fileName, outFileName)
 
     for line in io.lines(fileName) do
         local id,virusName = analyse_av_sig(line, mode)
-        print("id=" .. id .. "\nvirusname=" .. virusName)
+        --print("id=" .. id .. "\nvirusname=" .. virusName)
         io.write(id .. ":" .. virusName .. "\n")
     end
     --print(file:read("*l"))
     io.close(file)
 end
 
-readdb("test.hdb")
-normalize("test.hdb", "new.hdb")
+--readdb("test.hdb")
+normalize("main.hdb", "new.hdb")
