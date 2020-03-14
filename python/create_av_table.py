@@ -2,6 +2,11 @@
 # coding=utf-8
 import re
 import sqlite3
+import os
+
+MD5_TABLE_MODE = 0
+PE_MD5_TABLE_MODE = 1
+STR_TABLE_MODE = 2
 
 def tableNum(conn, table_name):
     c = conn.cursor()
@@ -18,14 +23,32 @@ def createTable(conn, tableName):
             );'''.format(tableName))
         print("Table created successfully");
 
-def createChildTable(conn, tableName):
-    if 0 == tableNum(conn, tableName):
-        c = conn.cursor()
+def createChildTable(conn, tableName, mode):
+    if 0 != tableNum(conn, tableName):
+        return 0
+
+    c = conn.cursor()
+    if MD5_TABLE_MODE == mode:
         c.execute('''CREATE TABLE {0} 
             (ID INTEGER NOT NULL,
-             MD5 TEXT NOT NULL UNIQUE,
-             FOREIGN KEY (ID) REFERENCES av_sig(ID) );'''.format(tableName))
-        print("Table created successfully");
+            FILESIZE INTERGER,
+            MD5 TEXT NOT NULL UNIQUE,
+            FOREIGN KEY (ID) REFERENCES av_sig(ID) );'''.format(tableName))
+    elif PE_MD5_TABLE_MODE == mode:
+        c.execute('''CREATE TABLE {0} 
+            (ID INTEGER NOT NULL,
+            FILESIZE INTERGER,
+            MD5 TEXT NOT NULL UNIQUE,
+            FOREIGN KEY (ID) REFERENCES av_sig(ID) );'''.format(tableName))
+    elif STR_TABLE_MODE == mode:
+        c.execute('''CREATE TABLE {0} 
+            (ID INTEGER NOT NULL,
+            TYPE TEXT,
+            OFFSET TEXT,
+            STRING TEXT NOT NULL UNIQUE,
+            FOREIGN KEY (ID) REFERENCES av_sig(ID) );'''.format(tableName))
+
+    print("Table created successfully");
 
 def insert(curs, tableName, key, value):
     curs.execute("INSERT INTO {0} ({1}) VALUES ({2})".format(tableName, key, value));
@@ -35,18 +58,82 @@ def showAll(curs, tableName):
     for row in cursor:
         print(row[0:len(row)])
 
-tableName = "av_sig"
+def last_insert_id(curs):
+    cursor = curs.execute('select last_insert_rowid() from av_sig')
+    values = cursor.fetchone()
+    return values[0]
 
-conn = sqlite3.connect('test.db')
-createTable(conn, tableName)
-createChildTable(conn, "av_sig_md5")
-#开启外键约束
-c = conn.cursor()
-c.execute("PRAGMA foreign_keys = ON;")
+def readdb(conn, fileName):
+    subName = os.path.splitext(fileName)[-1]
+    curs = conn.cursor()
+    file = open(fileName, "r")
+    if ".hdb" == subName or ".hsb" == subName:
+        for line in file:
+            col = line.split(":")
+            insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
+            avid = last_insert_id(curs)
+            insert(curs, "av_sig_md5", "(ID, FILESIZE, MD5)", \
+                   "'{0}', '{1}', '{2}'".format(avid, col[1], col[2]))
+    elif ".mdb" == subName:
+        for line in file:
+            col = line.split(":")
+            insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
+            avid = last_insert_id(curs)
+            insert(curs, "av_sig_mdb", "(ID, FILESIZE, MD5)", \
+                   "'{0}', '{1}', '{2}'".format(avid, col[0], col[1]))
+    elif ".ndb" == subName:
+        for line in file:
+            col = line.split(":")
+            insert(curs, "av_sig", "NAME", "'{0}'".format(col[0]))
+            avid = last_insert_id(curs)
+            insert(curs, "av_sig_str", "(ID, TYPE, OFFSET, STRING)", \
+                   "'{0}', '{1}', '{2}', '{3}'".format(avid, col[1], col[2], col[3]))
 
-insert(conn.cursor(), tableName,"name", "'apple'")
-showAll(c, tableName)
-showAll(c, "av_sig_md5")
+def main(tableName):
+    tableName = "av_sig"
+    conn = sqlite3.connect('test.db')
+    #创建表格
+    createTable(conn, tableName)
+    createChildTable(conn, "av_sig_md5", MD5_TABLE_MODE)
+    createChildTable(conn, "av_sig_pe_md5", PE_MD5_TABLE_MODE)
+    createChildTable(conn, "av_sig_str", STR_TABLE_MODE)
+    #开启外键约束
+    c = conn.cursor()
+    c.execute("PRAGMA foreign_keys = ON;")
 
-conn.commit()
-conn.close()
+    readdb(conn, "test.db")
+    showAll(c, tableName)
+    showAll(c, "av_sig_md5")
+
+    conn.commit()
+    conn.close()
+
+# 需要添加异常捕获机制
+def test():
+    tableName = "av_sig"
+    conn = sqlite3.connect('test.db')
+    curs = conn.cursor()
+    insert(curs, "av_sig", "NAME", ",'orange'")
+    print(last_insert_id(conn.cursor()))
+    conn.commit()
+    conn.close()
+
+test()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
