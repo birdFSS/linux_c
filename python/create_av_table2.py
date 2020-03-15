@@ -79,10 +79,7 @@ def readdb(conn, fileName):
                 insert(curs, "av_sig_md5", "ID, FILESIZE, MD5", \
                        "'{0}', '{1}', '{2}'".format(avid, col[1], col[2]))
             except sqlite3.IntegrityError as e:
-                #print(e.args)
-                conn.rollback()
-            else:
-                conn.commit()
+                print(e.args, "ID={0}".format(avid))
 
     elif ".mdb" == subName:
         for line in file:
@@ -93,10 +90,7 @@ def readdb(conn, fileName):
                 insert(curs, "av_sig_mdb", "ID, FILESIZE, MD5", \
                        "'{0}', '{1}', '{2}'".format(avid, col[0], col[1]))
             except sqlite3.IntegrityError as e:
-                #print(e.args)
-                conn.rollback()
-            else:
-                conn.commit()
+                print(e.args, "ID={0}".format(avid))
     elif ".ndb" == subName:
         for line in file:
             col = line.split(":")
@@ -106,10 +100,7 @@ def readdb(conn, fileName):
                 insert(curs, "av_sig_str", "ID, TYPE, OFFSET, STRING", \
                        "'{0}', '{1}', '{2}', '{3}'".format(avid, col[1], col[2], col[3]))
             except sqlite3.IntegrityError as e:
-                #print(e.args)
-                conn.rollback()
-            else:
-                conn.commit()
+                print(e.args, "ID={0}".format(avid))
 
 def main():
     tableName = "av_sig"
