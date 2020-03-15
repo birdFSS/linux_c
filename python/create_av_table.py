@@ -51,10 +51,13 @@ def createChildTable(conn, tableName, mode):
     print("Table created successfully");
 
 def insert(curs, tableName, key, value):
-    curs.execute("INSERT INTO {0} ({1}) VALUES ({2})".format(tableName, key, value));
+    curs.execute("INSERT INTO {0} ({1}) VALUES ({2});".format(tableName, key, value));
+
+def delete(curs, tableName, condition):
+    curs.execute("DELETE FROM {0} WHERE {1};".format(tableName, condition));
 
 def showAll(curs, tableName):
-    cursor = curs.execute("SELECT * FROM {0}".format(tableName))
+    cursor = curs.execute("SELECT * FROM {0};".format(tableName))
     for row in cursor:
         print(row[0:len(row)])
 
@@ -69,25 +72,44 @@ def readdb(conn, fileName):
     file = open(fileName, "r")
     if ".hdb" == subName or ".hsb" == subName:
         for line in file:
-            col = line.split(":")
-            insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
-            avid = last_insert_id(curs)
-            insert(curs, "av_sig_md5", "(ID, FILESIZE, MD5)", \
-                   "'{0}', '{1}', '{2}'".format(avid, col[1], col[2]))
+            try:
+                col = line.split(":")
+                insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
+                avid = last_insert_id(curs)
+                insert(curs, "av_sig_md5", "(ID, FILESIZE, MD5)", \
+                       "'{0}', '{1}', '{2}'".format(avid, col[1], col[2]))
+            except sqlite3.IntegrityError as e:
+                print(e.args)
+                conn.rollback()
+            else:
+                conn.commit()
+
     elif ".mdb" == subName:
         for line in file:
-            col = line.split(":")
-            insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
-            avid = last_insert_id(curs)
-            insert(curs, "av_sig_mdb", "(ID, FILESIZE, MD5)", \
-                   "'{0}', '{1}', '{2}'".format(avid, col[0], col[1]))
+            try:
+                col = line.split(":")
+                insert(curs, "av_sig", "NAME", "'{0}'".format(col[2]))
+                avid = last_insert_id(curs)
+                insert(curs, "av_sig_mdb", "(ID, FILESIZE, MD5)", \
+                       "'{0}', '{1}', '{2}'".format(avid, col[0], col[1]))
+            except sqlite3.IntegrityError as e:
+                print(e.args)
+                conn.rollback()
+            else:
+                conn.commit()
     elif ".ndb" == subName:
         for line in file:
             col = line.split(":")
-            insert(curs, "av_sig", "NAME", "'{0}'".format(col[0]))
-            avid = last_insert_id(curs)
-            insert(curs, "av_sig_str", "(ID, TYPE, OFFSET, STRING)", \
-                   "'{0}', '{1}', '{2}', '{3}'".format(avid, col[1], col[2], col[3]))
+            try:
+                insert(curs, "av_sig", "NAME", "'{0}'".format(col[0]))
+                avid = last_insert_id(curs)
+                insert(curs, "av_sig_str", "(ID, TYPE, OFFSET, STRING)", \
+                       "'{0}', '{1}', '{2}', '{3}'".format(avid, col[1], col[2], col[3]))
+            except sqlite3.IntegrityError as e:
+                print(e.args)
+                conn.rollback()
+            else:
+                conn.commit()
 
 def main(tableName):
     tableName = "av_sig"
@@ -112,8 +134,22 @@ def main(tableName):
 def test():
     tableName = "av_sig"
     conn = sqlite3.connect('test.db')
+    createTable(conn, tableName)
+    createChildTable(conn, "av_sig_md5", MD5_TABLE_MODE)
     curs = conn.cursor()
-    insert(curs, "av_sig", "NAME", ",'orange'")
+    try:
+        insert(curs, "av_sig", "NAME", "'banana2'")
+        avid = last_insert_id(curs)
+        insert(curs, "av_sig_md5", "ID, FILESIZE, MD5", "{0},'10','f653cae'".format(avid))
+    except sqlite3.IntegrityError as e:
+        print(e.args)
+        conn.rollback()
+        #delete(curs, "av_sig", "ID={0}".format(avid))
+        #print(last_insert_id(conn.cursor()))
+        print(avid)
+    else:
+        print("insert success")
+
     print(last_insert_id(conn.cursor()))
     conn.commit()
     conn.close()
