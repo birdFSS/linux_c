@@ -33,6 +33,9 @@ int main()  //int argc, char** argv)
 
     showMemery();
 
+    char test[100] = "符峰海";
+    printf("%ld\n", strlen(test));
+
     return 0;
 }
 
