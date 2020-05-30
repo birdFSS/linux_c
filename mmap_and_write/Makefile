@@ -89,6 +89,7 @@ show:
 
 clean:
 	rm -rf $(OBJ_PATH)/* $(TARGET)
+	rm -rf ./*.out
 
 gprof:
 	./test

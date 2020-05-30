@@ -89,7 +89,7 @@ int main(/*int argc, char** argv*/)
     char filepath1[256] = {0};
     char filepath2[256] = {0};
     int i = 0;
-    while(i++ < 1000)
+    while(i++ < 10000)
     {
 #if 1
         sprintf(filepath1, "./tmp/%s%d", "file", i);
@@ -102,7 +102,7 @@ int main(/*int argc, char** argv*/)
         write_file(srcfd, destfd1);
         lseek(srcfd, 0, SEEK_SET);
         close(destfd1);
-#else 
+
         sprintf(filepath2, "./tmp/%s%d", "mfile", i);
         destfd2 = open(filepath2, O_RDWR | O_CREAT, 0666);
         if(-1 == destfd2)

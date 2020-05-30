@@ -8,6 +8,8 @@
 *.gz
 *.rar
 *.gz
+tags
+test
 
 tmp/
 clamav/
