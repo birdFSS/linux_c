@@ -8,7 +8,7 @@
 #  |-main.h
 #|-obj
 #  |-main.o
-#  |-main.d 	//用来依赖头文件的，就是头文件修改后，只需编译使用该头文件的源文件即可
+#  |-main.d 	//用来依赖头文件的，就是头文件修改后，也会自动编译相关文件
 #|-Makefile
 
 #源文件路径
@@ -92,8 +92,8 @@ clean:
 
 gprof:
 	./test
-	gprof test gmon.out > analysis.txt
-	vim analysis.txt
+	gprof test gmon.out > analysis.out
+	vim analysis.out
 
 
 
