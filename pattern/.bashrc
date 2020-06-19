@@ -110,7 +110,7 @@ alias q='query'
 alias qt='query -ca -t 10'
 alias py3='python3 '
 alias py='python '
-alias ycmMake='~/.vim/config_gen.py '
+alias ycmMake='~/.vim/YCM-Generator/config_gen.py '
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
