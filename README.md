@@ -9,3 +9,6 @@ cd ~/
 mkdir linux_c  
 cd linux_c
 git clone git@github.com:birdFSS/linux_c.git  
+
+# ycm工具
+ycmMake $dir

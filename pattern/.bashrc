@@ -106,6 +106,11 @@ alias ....="cd ..;cd ..;cd ..;"
 alias h="history"
 alias rm='rm -I --preserve-root '
 alias sipt='sudo iptables'
+alias q='query'
+alias qt='query -ca -t 10'
+alias py3='python3 '
+alias py='python '
+alias ycmMake='~/.vim/config_gen.py '
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
