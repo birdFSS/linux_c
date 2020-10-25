@@ -1,14 +1,18 @@
-/* welcome to world
- * file : .c
+/* 
+ * file : fileName.c
  * brief : 
- * author : BirdFSS
+ * author : user
  * 
- * change log : 2019/12/15 create this file
+ * change log : date create this file
  * 
  * 
  */ 
 
 /*************************** INCLUDE *********************************************/
+#include "fileName.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*************************** DEFINE **********************************************/
 

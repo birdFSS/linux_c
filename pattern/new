@@ -1,0 +1,40 @@
+#!/bin/bash
+DEBUG_LOG="/home/${USER}/log/new.log"
+
+. /home/${USER}/linux_c/pattern/debug.sh
+DEBUG_LEVEL=5
+
+mdate=$(date "+%Y-%m-%d")
+
+basic_change()
+{
+    local fileName=${1##*/}
+    fileName=${fileName%.*}
+    local upperName="$(echo ${fileName} | tr '[a-z]' '[A-Z]')"
+
+    sed -i "s/date/${mdate}/g" ${1}
+    sed -i "s/fileName/${fileName}/g" ${1}
+    sed -i "s/HEADNAME/${upperName}/g" ${1}
+    sed -i "s/user/$(git config user.name)/g" ${1}
+
+    info sed -i "s/date/${mdate}/g" ${1}
+    info sed -i "s/HEADNAME/${upperName}/g" ${1}
+    info sed -i "s/fileName/${fileName}/g" ${1}
+    info sed -i "s/user/$(git config user.name)/g" ${1}
+}
+
+while getopts f: argvs; do
+    case $argvs in
+    f)
+        case "${OPTARG##*.}" in
+        c)
+            cp ~/linux_c/pattern/pat.c ${OPTARG}
+        ;;
+        h)
+            cp ~/linux_c/pattern/pat.h ${OPTARG}
+        ;;
+        esac
+        basic_change ${OPTARG}
+    ;;
+    esac
+done
