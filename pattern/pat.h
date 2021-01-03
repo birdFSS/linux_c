@@ -1,15 +1,15 @@
-/* welcome to world
- * file : .h
+/* 
+ * file : fileName.h
  * brief : 
- * author : BirdFSS
+ * author : user
  * 
- * change log : 2019/12/15 create this file
+ * change log : date create this file
  * 
  * 
  */ 
 
-#ifndef __<<_H__
-#define __<<_H__
+#ifndef __HEADNAME_H__
+#define __HEADNAME_H__
 
 /*************************** INCLUDE *********************************************/
 #include <stdio.h>

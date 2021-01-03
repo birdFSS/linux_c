@@ -67,7 +67,7 @@ $(OBJS):$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
 $(OBJ_PATH)/%.d:$(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH)
 	@set -e; rm -f $@; \
-	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	$(CC) -MM $(CFLAG) $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,$(OBJ_PATH)/\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
 
